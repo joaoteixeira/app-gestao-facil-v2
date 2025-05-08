@@ -7,18 +7,26 @@
             <a class="navbar-brand px-4 py-3 m-0"
                 href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
                 <img src="/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
-                <span class="ms-1 text-sm text-dark">Creative Tim</span>
+                <span class="ms-1 text-sm text-dark">Gestao Facil</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0 mb-2">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active bg-gradient-dark text-white" href="../pages/dashboard.html">
+                    <RouterLink class="nav-link text-dark" active-class="active bg-gradient-dark text-white" to="/">
                         <i class="material-symbols-rounded opacity-5">dashboard</i>
                         <span class="nav-link-text ms-1">Dashboard</span>
-                    </a>
+                    </RouterLink>
                 </li>
+
+                <li class="nav-item">
+                    <RouterLink class="nav-link text-dark" active-class="active bg-gradient-dark text-white" to="/servidores">
+                        <i class="material-symbols-rounded opacity-5">dashboard</i>
+                        <span class="nav-link-text ms-1">Servidores</span>
+                    </RouterLink>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="../pages/tables.html">
                         <i class="material-symbols-rounded opacity-5">table_view</i>

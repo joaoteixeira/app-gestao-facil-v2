@@ -10,16 +10,15 @@
             </div>
             <div class="col-sm-2 d-grid">
 
-              <button type="button" class="btn btn-primary">
+              <RouterLink class="btn btn-primary" to="/servidores/novo">
                 <i class="fas fa-plus-circle me-2"></i>Novo
-              </button>
+              </RouterLink>
 
             </div>
 
           </div>
         </div>
         <div class="card-body p-0">
-
           <table class="table m-0">
             <thead>
               <tr>

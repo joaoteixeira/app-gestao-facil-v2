@@ -1,22 +1,26 @@
 <template>
-  <SideNavbar />
+  <LoaderBg />
+  <NavSidebar />
+  <HeaderBar />
 
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <NavBar />
+  <div class="pc-container">
+    <div class="pc-content">
+      <BreadCrumb />
 
-    <div class="container-fluid py-2">
       <RouterView />
-
     </div>
+  </div>
 
-  </main>
-
-  <SettingsPlugin />
+  <FooterBar />
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import SideNavbar from './components/SideNavbar.vue';
-import NavBar from './components/NavBar.vue';
-import SettingsPlugin from './components/SettingsPlugin.vue';
+import { RouterView } from 'vue-router';
+import BreadCrumb from './components/layout/BreadCrumb.vue';
+import FooterBar from './components/layout/FooterBar.vue';
+import HeaderBar from './components/layout/HeaderBar.vue';
+import LoaderBg from './components/layout/LoaderBg.vue';
+import NavSidebar from './components/layout/NavSidebar.vue';
 </script>
+
+<style scoped></style>

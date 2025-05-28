@@ -1,52 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
-    <title>
-      App Web by Creative Tim
-    </title>
+<html lang="">
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-    <!-- Nucleo Icons -->
-    <link href="/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="/css/nucleo-svg.css" rel="stylesheet" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gestão Fácil App</title>
 
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- Material Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!-- CSS Files -->
-    <link id="pagestyle" href="/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    id="main-font-link">
 
-  </head>
-  <body class="g-sidenav-show  bg-gray-100">
-    <div id="app"></div>
+  <!-- [Tabler Icons] https://tablericons.com -->
+  <link rel="stylesheet" href="/fonts/tabler-icons.min.css">
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="/fonts/feather.css">
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="/fonts/fontawesome.css">
+  <!-- [Material Icons] https://fonts.google.com/icons -->
+  <link rel="stylesheet" href="/fonts/material.css">
+  <!-- [Template CSS Files] -->
+  <link rel="stylesheet" href="/css/style.css" id="main-style-link">
+  <link rel="stylesheet" href="/css/style-preset.css">
+</head>
 
-    
-    <script type="module" src="/src/main.ts"></script>
+<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
 
-    <script src="/js/core/popper.min.js"></script>
-    <script src="/js/core/bootstrap.min.js"></script>
-    <script src="/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="/js/plugins/chartjs.min.js"></script>
+  <script src="/js/plugins/popper.min.js"></script>
+  <script src="/js/plugins/simplebar.min.js"></script>
+  <script src="/js/plugins/bootstrap.min.js"></script>
+  <script src="/js/fonts/custom-font.js"></script>
+  <script src="/js/pcoded.js"></script>
+  <script src="/js/plugins/feather.min.js"></script>
 
-    <script>
-      var win = navigator.platform.indexOf('Win') > -1;
-      if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-          damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-      }
-    </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="/js/material-dashboard.min.js?v=3.2.0"></script>
-  </body>
+  <script>layout_change('light');</script>
+  <script>change_box_container('false');</script>
+  <script>layout_rtl_change('false');</script>
+  <script>preset_change("preset-1");</script>
+  <script>font_change("Public-Sans");</script>
+</body>
+
 </html>

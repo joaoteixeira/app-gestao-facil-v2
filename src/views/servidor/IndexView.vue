@@ -1,124 +1,94 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="card my-4">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">Servidores</h6>
-                    </div>
-                </div>
+  <div class="row">
+    <!-- [ sample-page ] start -->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-10">
+              <h3 class="m-0">Servidores</h3>
             </div>
-            <div class="card-body px-0 pb-2">
-                <div class="table-responsive p-0">
-                    <table class="table align-items-center mb-0">
-                        <thead>
-                            <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                    Siape</th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Situacao
-                                </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Cargo
-                                </th>
-                                <th class="text-secondary opacity-7"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(servidor, index) in listaServidores" :key="index">
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg"
-                                                alt="user1">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">{{ servidor.nome }}</h6>
-                                            <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ servidor.siape }}</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm"
-                                        :class="{ 'bg-gradient-success': servidor.situacao, 'bg-gradient-secondary': !servidor.situacao }">{{
-                                            servidor.situacao ? 'Ativo' : 'Inativo' }}</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">{{ servidor.cargo
-                                    }}</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                        data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-sm-2 d-grid">
+
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>Novo
+              </button>
+
             </div>
+
+          </div>
         </div>
+        <div class="card-body p-0">
+
+          <table class="table m-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Siape</th>
+                <th>Data Nascimento</th>
+                <th>E-mail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>João Silva</td>
+                <td>1234567</td>
+                <td>15/03/1980</td>
+                <td>joao.silva@email.com</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Maria Santos</td>
+                <td>7654321</td>
+                <td>22/07/1985</td>
+                <td>maria.santos@email.com</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Pedro Oliveira</td>
+                <td>9876543</td>
+                <td>10/11/1978</td>
+                <td>pedro.oliveira@email.com</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Ana Costa</td>
+                <td>4567890</td>
+                <td>05/05/1990</td>
+                <td>ana.costa@email.com</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Carlos Souza</td>
+                <td>2345678</td>
+                <td>18/09/1982</td>
+                <td>carlos.souza@email.com</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
     </div>
-    </div>
+    <!-- [ sample-page ] end -->
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'IndexView',
-
-    data() {
-        return {
-            listaServidores: [] as Array<{ nome: string; siape: number, situacao: boolean; cargo: string }>,
-        }
-    },
-
-    mounted() {
-        this.buscarServidores();
-
-    },
-
-    methods: {
-        buscarServidores() {
-            this.listaServidores.push({
-                nome: 'Joao Teixeira',
-                siape: 12345678,
-                situacao: true,
-                cargo: 'Docente'
-            });
-
-            this.listaServidores.push({
-                nome: 'Jefferson dos Santos',
-                siape: 12345679,
-                situacao: true,
-                cargo: 'Docente'
-            });
-
-            this.listaServidores.push({
-                nome: 'Leticia Carvalho',
-                siape: 12345623,
-                situacao: true,
-                cargo: 'Diretora Geral'
-            });
-
-            this.listaServidores.push({
-                nome: 'Emi Oliveira',
-                siape: 12345626,
-                situacao: false,
-                cargo: 'Docente'
-            });
-        },
+  name: 'IndexView',
+  data() {
+    return {
+      servidores: [],
+      loading: false
     }
+  },
+  methods: {
 
-
+  }
 });
 </script>

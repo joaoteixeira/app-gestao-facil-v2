@@ -15,15 +15,30 @@
           </div>
         </div>
         <div class="card-body">
+          <div class="alert alert-warning" v-if="v$.$errors.length">
+            <p class="m-0 p-0" v-for="error of v$.$errors" :key="error.$uuid">
+              {{ error.$property }} {{ error.$message }}
+            </p>
+          </div>
           <form @submit.prevent="salvar">
             <div class="row">
               <div class="col-sm-6 mb-3">
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="nome" v-model="formDados.nome">
+                <div class="text-danger" v-if="v$.formDados.nome.$errors.length">
+                  <p class="m-0 p-0" v-for="error of v$.formDados.nome.$errors" :key="error.$uuid">
+                    <small>{{ error.$message }}</small>
+                  </p>
+                </div>
               </div>
               <div class="col-sm-6 mb-3">
                 <label for="siape" class="form-label">Siape</label>
                 <input type="text" class="form-control" id="siape" v-model="formDados.siape">
+                <div class="text-danger" v-if="v$.formDados.siape.$errors.length">
+                  <p class="m-0 p-0" v-for="error of v$.formDados.siape.$errors" :key="error.$uuid">
+                    <small>{{ error.$message }}</small>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -54,9 +69,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength, numeric, helpers } from '@vuelidate/validators'
 
 export default defineComponent({
   name: 'FormView',
+
+  setup() {
+    return { v$: useVuelidate() }
+  },
 
   data() {
     return {
@@ -69,8 +90,29 @@ export default defineComponent({
     }
   },
 
+  validations() {
+    return {
+      formDados: {
+        nome: {
+          required: helpers.withMessage('O nome é obrigatório', required),
+          minLength: helpers.withMessage('O nome deve ter no mínimo 8 caracteres', minLength(8))
+        },
+        siape: { required, numeric },
+        dataNascimento: { required },
+        email: { required, email }
+      }
+    }
+  },
+
   methods: {
-    salvar() {
+    async salvar() {
+      const result = await this.v$.$validate();
+
+      if (!result) {
+        // notify user form is invalid
+        return;
+      }
+
       console.log('DADOS DO FORMULARIO', this.formDados)
     }
   }

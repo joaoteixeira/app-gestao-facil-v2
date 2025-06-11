@@ -30,40 +30,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>João Silva</td>
-                <td>1234567</td>
-                <td>15/03/1980</td>
-                <td>joao.silva@email.com</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Maria Santos</td>
-                <td>7654321</td>
-                <td>22/07/1985</td>
-                <td>maria.santos@email.com</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Pedro Oliveira</td>
-                <td>9876543</td>
-                <td>10/11/1978</td>
-                <td>pedro.oliveira@email.com</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Ana Costa</td>
-                <td>4567890</td>
-                <td>05/05/1990</td>
-                <td>ana.costa@email.com</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Carlos Souza</td>
-                <td>2345678</td>
-                <td>18/09/1982</td>
-                <td>carlos.souza@email.com</td>
+              <tr v-for="(servidor, index) in servidores" :key="servidor.id">
+                <td>{{ index + 1 }}</td>
+                <td>{{ servidor.nome }}</td>
+                <td>{{ servidor.siape }}</td>
+                <td>{{ formatDate(servidor.dataNascimento) }}</td>
+                <td>{{ servidor.email }}</td>
               </tr>
             </tbody>
           </table>
@@ -77,16 +49,92 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import dayjs from 'dayjs';
 
 export default defineComponent({
   name: 'IndexView',
+
   data() {
     return {
       servidores: [],
       loading: false
     }
   },
+
+  mounted() {
+    this.carregarListaServidoresCookies();
+    this.addNovoServidor();
+  },
   methods: {
+
+    addNovoServidor() {
+      if (this.$cookies.isKey('novo-servidor')) {
+        this.servidores.push(this.$cookies.get('novo-servidor'));
+        this.$cookies.remove('novo-servidor');
+        this.atualizarListaServidoresCookies();
+      }
+    },
+
+    carregarListaServidoresCookies() {
+      if (!this.$cookies.isKey('servidores-lista')) {
+        this.inserirListaServidoresCookies();
+      }
+
+      const listaServidores = this.$cookies.get('servidores-lista');
+
+      this.servidores = JSON.parse(listaServidores);
+    },
+
+    inserirListaServidoresCookies() {
+      this.$cookies.set('servidores-lista', JSON.stringify([
+        {
+          id: 1,
+          nome: 'João Silva',
+          siape: '1234567',
+          dataNascimento: '1980-03-15',
+          email: 'joao.silva@email.com'
+        },
+        {
+          id: 2,
+          nome: 'Maria Santos',
+          siape: '7654321',
+          dataNascimento: '1985-07-22',
+          email: 'maria.santos@email.com'
+        },
+        {
+          id: 3,
+          nome: 'Pedro Oliveira',
+          siape: '9876543',
+          dataNascimento: '1978-11-10',
+          email: 'pedro.oliveira@email.com'
+        },
+        {
+          id: 4,
+          nome: 'Ana Costa',
+          siape: '4567890',
+          dataNascimento: '1990-06-05',
+          email: 'ana.costa@email.com'
+        },
+        {
+          id: 5,
+          nome: 'Carlos Souza',
+          siape: '2345678',
+          dataNascimento: '1982-09-18',
+          email: 'carlos.souza@email.com'
+        }
+      ]));
+    },
+
+    atualizarListaServidoresCookies() {
+      this.$cookies.remove('servidores-lista');
+      this.$cookies.set('servidores-lista', JSON.stringify(this.servidores))
+    },
+
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format('DD/MM/YYYY');
+    }
 
   }
 });

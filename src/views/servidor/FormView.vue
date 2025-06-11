@@ -68,9 +68,9 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core';
+import { email, helpers, minLength, numeric, required } from '@vuelidate/validators';
 import { defineComponent } from 'vue';
-import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, numeric, helpers } from '@vuelidate/validators'
 
 export default defineComponent({
   name: 'FormView',
@@ -109,11 +109,12 @@ export default defineComponent({
       const result = await this.v$.$validate();
 
       if (!result) {
-        // notify user form is invalid
         return;
       }
 
-      console.log('DADOS DO FORMULARIO', this.formDados)
+      this.$cookies.set('novo-servidor', this.formDados);
+
+      this.$router.push('/servidores');
     }
   }
 

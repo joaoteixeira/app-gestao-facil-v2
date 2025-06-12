@@ -68,11 +68,8 @@
 </template>
 
 <script lang="ts">
-import { Toast } from '@/common/toast';
 import { useVuelidate } from '@vuelidate/core';
 import { email, helpers, minLength, numeric, required } from '@vuelidate/validators';
-import axios from 'axios';
-// import Swal from 'sweetalert2';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -115,41 +112,9 @@ export default defineComponent({
         return;
       }
 
-      const dados = {
-        ...this.formDados,
-        id: Math.random().toString(36).substring(2, 8)
-      }
+      this.$cookies.set('novo-servidor', this.formDados);
 
-      const headers = {
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': '69420'
-      }
-
-      try {
-         const response = await axios.post('http://localhost:3000/servidores', dados, { headers: headers });
-
-         if(response.status == 201) {
-
-            // Swal.fire({
-            //   title: "Cadastro Efetuado",
-            //   text: "Servidor cadastrado com sucesso!",
-            //   icon: "success",
-            //   showConfirmButton: true,
-            //   timer: 5000,
-            // }).then(() => {
-            //   this.$router.push('/servidores');
-            // });
-
-            Toast.fire({
-              icon: "success",
-              title: "Servidor adicionado com sucesso"
-            });
-
-            this.$router.push('/servidores');
-         }
-
-      } catch {}
-
+      this.$router.push('/servidores');
     }
   }
 
